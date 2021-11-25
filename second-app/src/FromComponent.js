@@ -1,0 +1,48 @@
+import React,{Component} from "react";
+
+export default class FromComponent extends Component
+{
+    state ={
+        Name :"",
+        Age:0,
+       
+    };
+     onValueChangeHandler =(event)=>
+        {
+            console.log(event.target.name)
+           this.setState({[event.target.name]:event.target.value });
+        };
+        // onAgeChangeHandler =(event)=>
+        // {
+            
+        //     this.setState({Age                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      :event.target.value });
+        // };
+        onFromSubmitHandler =(event)=>
+        {
+            event.preventDefault();
+            console.log("In Submit");
+            console.log(this.state);
+            
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+        };
+    render()
+    {
+        return(
+            <>
+            <h1> Person From</h1>
+            <form onSubmit={this.onFromSubmitHandler}>
+                <label>Name:</label>
+                <input name={"Name"}value={this.state.Name} 
+            onChange={this.onValueChangeHandler }/> 
+                <br /> 
+                <label> Age :</label>            
+                <input name={'Age'} value={this.state.Age}                 
+            onChange={this.onValueChangeHandler }/> 
+                <br />
+                <button type="submit">Submit</button>
+
+            </form>
+            </>
+        );
+        }
+}
