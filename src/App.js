@@ -1,30 +1,38 @@
+import logo from './logo.svg';
 import './App.css';
-// import ConditionalComponet from './ConditionalComponent';
-// import FalseComponet from './FalseComponet';
- import ListComponent from './ListComponent';
-// import MyFirstComponent from './MyFirstComponent';
-// import MySecondComponent from './MySecondComponent';
-// import SmParentComponent from '../../second-app/src/SmParentComponet';
+// import { ParamHTMLAttributes } from 'react';
 // import ParentComponent from './ParentComponent';
-// import TrueComponent from './TrueComponent';
-
-function App() 
-{
-  // const name ="Ram";
+// import FromComponent from './FromComponent';
+// import RefsExample from './RefsExample';
+import RefsCallBack from './RefsCallBack';
+import DynamicClass from './DynamicClass';
+function App() {
+   const name="Ram";
+     const age=23;
   return (
-  <div>
-
- <h1>
-   From App
-
- </h1>
- {/* {name==="Ram" ? <TrueComponent /> : <FalseComponet/>}
- { name==="Rama                      " && <TrueComponent />} */}
-{/* < ConditionalComponet /> */}
-<ListComponent />
-  </div>
-
- 
+    <div>
+        {/* <FromComponent /> */}
+        <h1 className={"my-class"}> From App </h1>
+        < div className={"my-div"}>I Am Inside my div</div>
+        <DynamicClass />
+        {/* <RefsExample /> */}
+        {/* <RefsCallBack /> */}
+      {/* <ParentComponent /> */}
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header> */}
+    </div>
   );
 }
 
