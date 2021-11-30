@@ -15,10 +15,13 @@ export default class NavBar extends Component{
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <Link class="nav-link active" aria-current="page" to={"/Home"}>Home</Link>
+          <Link class="nav-link active" aria-current="page" to={"/post"}>Post</Link>
         </li>
         <li class="nav-item">
-          <Link class="nav-link" to={"/Link"}>Link</Link>
+          <Link class="nav-link" to={"/todo"}>ToDo</Link>
+        </li>
+        <li class="nav-item">
+          <Link class="nav-link" to={"/user"}>User</Link>
         </li>
         
       </ul>

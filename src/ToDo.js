@@ -3,90 +3,126 @@ import axios from "axios";
 
 export default class ToDo extends Component{
     state={
-        ToDo:[],
-        ToDoObject:{
+        todos:[],
+        isEditMode:false,
+        todoObj:{
             title:"",
-            body:"",
+            completed:"",
             userId:1,
         },
-    }
-    onDeleteClickHandler =(id) =>
-    {
-        axios.delete("https://jsonplaceholder.typicode.com/todos/" +id).then((Response)=>
-        {
-            console.log("Response");
-            this.fetchData();
-            alert("Deleted");
-        });
-
-    }
-    onChangeHandler=(event)=>
-    {
-        const{name,value}=event.target;
-        const ToDoObjectCopy=this.state.ToDoObject;
-        ToDoObjectCopy[name]=value;
-        this.setState({ToDoObject:ToDoObjectCopy});
     };
-    onFromSubmitClick=(event)=>{
-        event.preventDefault();
-        console.log(this.state);
-        axios.post("https://jsonplaceholder.typicode.com/todos",this.state.ToDoObject).then((Response)=>{
-            console.log(Response);
-            this.fetchData();
-            alert("Created");
+    
+        onClickHandler=(id)=>{
+            axios.delete("https://jsonplaceholder.typicode.com/todos/" +id).then((response)=>{
+                console.log(response);
+                this.FetchMethod();
+                alert("Deleted");
+    
+    
+            });
+        }
+        onChangeHandler = (event) => {
+            const {name,value}=event.target;
+            const todoObjectCopy=this.state.todoObj;
+            todoObjectCopy[name]=value;
+            this.setState({todoObj:todoObjectCopy});
+        };
+        onEditClickHandler = (id) => {
+            const editObject=this.state.todos.find((todo) => todo.id === id);
+            if(editObject)
+            {
+                this.setState({
+                    todoObj:editObject,isEditMode:true
+                });
+            }
+        };
+        resetState ()
+        {
             this.setState({
-                ToDoObject:{
+                todoObj:{
                     title:"",
-                    body:"",
+                    completed:"",
                     userId:1,
                 },
-
+                isEditMode:false,
             });
-        });
-    };
+        }
+        onCancelClickHandler = (event) =>{
+            event.preventDefault();
+            this.resetState();
+        }
+        onFormSubmitClick = (event) => {
+            event.preventDefault();
+            if(this.state.isEditMode)
+            {
+                axios.put("https://jsonplaceholder.typicode.com/todos/"+this.state.todoObj.id,this.state.todoObj)
+                .then((response)=> {console.log(response);
+                    this.FetchMethod();
+                    alert("Updated");
+                    this.resetState();
+                })
+            }
+            else{
+                console.log(this.state);
+                axios.post("https://jsonplaceholder.typicode.com/todos",this.state.todoObj)
+                .then((response) => {console.log(response);
+                    this.FetchMethod();
+                    alert("Created");
+                    this.resetState();
+                })
+            }
+        };
     render()
     {
         return(
             <>
-            <h1>Hello I am In ToDo</h1>
-            <form onSubmit={this.onFromSubmitClick}>
-                <label>Title</label>
-                <input 
-                name="title"
-                value={this.state.ToDoObject.title}
-                onChange={this.onChangeHandler}/>
-                 <label>Body</label>
-                <input 
-                name="body"
-                value={this.state.ToDoObject.body}
-                onChange={this.onChangeHandler}
-                />
-                <button className="btn btn-success"type="submit">Submit</button>
-            </form>
-            {this.state.ToDo.map((Todo,index) =>(
-                <div key={index}>
-                    <div>
-                        {index+1}.{Todo.title}
-                        </div>
-                    <button onClick={()=>{this.onDeleteClickHandler(ToDo.id);
-            }}>Deleted</button>
-                    
-                    <br />
+                <h1>Hello I am In todo</h1>
+                <form onSubmit={this.onFormSubmitClick}>
+                    <label>Title</label>
+                    <input
+                        name="title"
+                        value={this.state.todoObj.title}
+                        onChange={this.onChangeHandler}
+                    />
+                    <label>Completed</label>
+                    <input
+                        name="completed"
+                        value={this.state.todoObj.completed}
+                        onChange={this.onChangeHandler}
+                    />
 
-                </div>
-            ))}
-            </>
-        );
+                    <button  type="submit">{this.state.isEditMode ? "Update" : "Submit"}</button>
+                    <button  onClick = {this.onCancelClickHandler}>Cancel</button>
+                </form>
+                {this.state.todos.map((todo,index)=>(
+                    <div key={index}>
+                        <div>
+                        {index+1}.{todo.title}
+                        </div>
+                        <br/>
+                        <button className="btn btn-danger" onClick={()=>{
+                    this.onClickHandler(todo.id); }}>Delete</button>
+
+                    <button className="btn btn-success" onClick={() =>{
+                        this.onEditClickHandler(todo.id);
+                    }}>Edit</button>
+
+                    </div>
+                    
+                     ))}
+                </>
+        )
     }
     componentDidMount()
     {
-        this.fetchData();
+        this.FetchMethod();
     }
 
-    fetchData() {
-        axios.get("https://jsonplaceholder.typicode.com/todos").then((Response) => {
-            console.log(Response.data);
-            this.setState({ ToDo: Response.data });
+    FetchMethod() {
+        axios.get("https://jsonplaceholder.typicode.com/todos").then((response) => {
+            console.log(response.data);
+            this.setState({ todos: response.data });
         });
     }
 }
+

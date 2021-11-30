@@ -6,6 +6,7 @@ import Post from './Post';
 import { Route, Routes } from 'react-router-dom';
 import ToDo from './ToDo';
 import Footer from './Footer';
+import User from './User';
 
 function App() {
   return (
@@ -14,8 +15,9 @@ function App() {
      <Header />
      <NavBar />
      <Routes>
-       <Route path={"/Home"} element={<Post />}/>
-        <Route path={"/Link"} element={<ToDo />}/> 
+       <Route path={"/post"} element={<Post />}/>
+        <Route path={"/todo"} element={<ToDo />}/> 
+        <Route path={"/user"} element={<User />}/> 
      </Routes>
       {/* <Footer /> */}
     </div>
