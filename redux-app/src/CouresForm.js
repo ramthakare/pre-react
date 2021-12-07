@@ -39,6 +39,7 @@ class CourseForm extends Component{
                 onChange={this.onValueChangeHandler}></input>
                 </div>
 <button className="btn btn-success"type="submit">Submit</button>
+<button className="btn btn-warning">Edit</button>
                 </form> 
 
 

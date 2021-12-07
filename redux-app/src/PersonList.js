@@ -17,6 +17,7 @@ import { connect } from "react-redux";
             <th>Name</th>
             <th>Age</th>
             <th>Option</th>
+            <th>Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -29,6 +30,11 @@ import { connect } from "react-redux";
                             <td><button className="btn btn-danger"onClick={() =>{
                                 this.props.deletePersonByIndex(index);
                             }}></button></td>
+                            <td><button className="btn btn-warning">Edit</button>
+</td>
+                           
+
+                            
                         </tr>
                     );
                 })}

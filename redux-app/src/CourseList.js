@@ -14,6 +14,7 @@ class CourseList extends Component{
             <th>CourseName</th>
             <th>CouresFee</th>
             <th>Option</th>
+            <th>Edit</th>
             </tr>
             </thead>
             <tbody>
@@ -26,6 +27,7 @@ class CourseList extends Component{
                             <td><button className="btn btn-danger"onClick={() =>{
                                 this.props.deleteCourseByIndex(index);
                             }}></button></td>
+                             
                         </tr>
                     );
                 })}
