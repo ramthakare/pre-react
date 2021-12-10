@@ -9,6 +9,8 @@ import { useEffect, useState } from "react"
     const[name,setName]=useState("");
     const[userName,setUserName]=useState("");
     const[email,setEmail]=useState("");
+    const[isEditMode,setEditMode]=useState(false);
+    const[userId,setUserId]=useState(0);
 
 
     useEffect(() =>{
@@ -37,10 +39,23 @@ import { useEffect, useState } from "react"
    const onEmailChange =(event) =>{
     setEmail(event.target.value);
 };
+const onDeleteHandler=(id)=>{
+   
+  
+    axios.delete("https://jsonplaceholder.typicode.com/users/"+id).then((response) =>{
+        console.log(response.data);
+        alert("Deleted");
+        //fetch the data again
+        fetchData();
+        //reset form
+        
+    });
+};
 
 const onFromSubmit =(event) =>{
     event.preventDefault();//what is
     console.log(name,userName,email);
+    if(!isEditMode){
     axios.post("https://jsonplaceholder.typicode.com/users",{
         name,
         userName,
@@ -55,7 +70,45 @@ const onFromSubmit =(event) =>{
         setUserName("");
         setEmail("");
     });
-};
+}else{
+    if(userId >0){
+       axios.put("https://jsonplaceholder.typicode.com/users/"+userId,{
+           id:userId,
+           name,
+        userName,
+           userId:1,
+       }).then((response) =>{
+           if(response){
+               fetchData();
+               alert("updated");
+               onRest();
+           }
+           });
+       }
+    }
+    }
+    const onEdit =(userObject) =>{
+        console.log(userObject);
+        setEditMode(true);
+        setName(userObject.name);
+        setUserName(userObject.userName);
+        setEmail(userObject.email);
+       setUserId(userObject.id);
+       
+    };
+
+    const onRest=(event) =>{
+        if (event){
+            event.preventDefault();
+          }
+        setEditMode(false);
+        setName("");
+        setUserName("");
+        setEmail("");
+    };
+
+ 
+
 
 return(
     <>
@@ -70,8 +123,8 @@ return(
 
           <label>Email: </label>
           <input name="email" value={email} onChange={onEmailChange}/>
-
-          <button type="submit">Submit</button>
+          <button type="submit">{isEditMode ? "update" : "submit"}</button>
+               {isEditMode && <button onClick={onRest}>Rest:</button>}
     </form>
     <table  class="table table-success table-striped">
         <thead>
@@ -82,7 +135,10 @@ return(
                 <th>Email</th>
                 <th>City</th>
                 <th>lat</th>
+                <th>Option</th>
+               
             </tr>
+           
         </thead>
         <tbody>
             {userList.map((user,index) =>{
@@ -94,8 +150,12 @@ return(
                         <td>{user.email}</td>
                         <td>{user.address.city}</td>
                         <td>{user.address.geo.lat}</td>
-                        
+                        <button onClick={onDeleteHandler}>Delete:</button>
+                        <button onClick={()=>{
+                                onEdit(user)
+                              }}>Edit:</button>
                         </tr>
+                        
                 );
             })}
         </tbody>
