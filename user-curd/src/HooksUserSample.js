@@ -17,7 +17,7 @@ import { useEffect, useState } from "react"
      const[emailEdit,setEmailEditMode]=useState("");
      const[editObject,setEditObject]=useState({
          name:"",
-         userName:"",
+         username:"",
          email:"",
      })
 
@@ -108,7 +108,7 @@ const onFromSubmit =(event) =>{
         // setEmail("");
         setUserObject({
             name:"",
-            userName:"",
+            username:"",
             email:"",
         })
     });
@@ -137,6 +137,7 @@ const onFromSubmit =(event) =>{
     //     setUserName(userObject.userName);
     //     setEmail(userObject.email);
     //    setUserId(userObject.id);
+    setUserId()
     setSelectedUserId(userObject.id);
 
     setEditObject({
@@ -155,7 +156,7 @@ const onFromSubmit =(event) =>{
         // setEmail("");
         setUserObject({
             name:"",
-            userName:"",
+            username:"",
             email:"",
         })
     };
@@ -164,7 +165,7 @@ const onFromSubmit =(event) =>{
         setSelectedUserId(-1);
         setEditObject({
             name:"",
-            userName:"",
+            username:"",
             email:"",
         });
     };
@@ -199,7 +200,7 @@ return(
         <input name="name" value={userObject.name} onChange={onUserObjectChangeHandler}/>
   
        <label>UserName: </label>
-          <input name="userName" value={userObject.userName} onChange={onUserObjectChangeHandler}/>
+          <input name="username" value={userObject.username} onChange={onUserObjectChangeHandler}/>
 
           <label>Email: </label>
           <input name="email" value={userObject.email} onChange={onUserObjectChangeHandler}/>
@@ -228,7 +229,7 @@ return(
                         <td>{selectedUserId===user.id ? (<input name="name" value={editObject.name}
                         onChange={onEditObjectChangeHandler}/>):(
                             user.name)}</td>
-                        <td>{selectedUserId===user.id ? (<input name="userName" value={editObject.userName}
+                        <td>{selectedUserId===user.id ? (<input name="username" value={editObject.username}
                         onChange={onEditObjectChangeHandler}/>):(
                             user.username)}</td>
                         <td>{selectedUserId===user.id ? (<input name="email" value={editObject.email}
