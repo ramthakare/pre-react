@@ -1,0 +1,16 @@
+body {
+  background-color: #ece9b2;
+}
+.button,
+.primary-button,
+.secondary-button {
+  padding: 10px;
+  color: #14da45;
+  background-color: #23d1d1;
+}
+.primary-button {
+  background-color: rgba(29, 29, 201, 0.503);
+}
+.secondary-button {
+  background-color: rgba(182, 63, 17, 0.503);
+}
