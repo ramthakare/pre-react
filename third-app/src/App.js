@@ -10,37 +10,24 @@ import DynamicClass from "./DynamicClass";
 import MarkComponent from "./MarkComponet";
 import SassDemo from "./SassDemo";
 import RadiumDemo from "./RadiumDemo";
+import TestComponent from "./TestComponent";
 function App() {
   //  const name="Ram";
   //    const age=23;
   return (
-    <div>
-      {/* <h1>Well come to sass</h1> */}
-      {/* <SassDemo /> */}
-      <RadiumDemo />
-      {/* <FromComponent /> */}
-      {/* <h1 className={"my-class"}> From App </h1>
-        < div className={"my-div"}>I Am Inside my div</div> */}
-      {/* <DynamicClass /> */}
-      {/* <MarkComponent /> */}
-      {/* <RefsExample /> */}
-      {/* <RefsCallBack /> */}
-      {/* <ParentComponent /> */}
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-    </div>
+    // {/* <h1>Well come to sass</h1> */}
+    // {/* <SassDemo /> */}
+    // {/* <RadiumDemo /> */}
+    <TestComponent name={"Ram"} />
+
+    // {/* <FromComponent /> */}
+    // {/* <h1 className={"my-class"}> From App </h1>
+    //   < div className={"my-div"}>I Am Inside my div</div> */}
+    // {/* <DynamicClass /> */}
+    // {/* <MarkComponent /> */}
+    // {/* <RefsExample /> */}
+    // {/* <RefsCallBack /> */}
+    // {/* <ParentComponent /> */}
   );
 }
 
